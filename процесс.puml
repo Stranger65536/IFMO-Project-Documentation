@@ -1,0 +1,21 @@
+@startuml
+skinparam legendFontSize 18
+skinparam stateFontSize 18
+skinparam usecaseFontColor #fff
+skinparam usecaseArrowFontSize 18
+skinparam usecaseBackgroundColor #2c95dd
+
+state "Проектирование \n отдельных компонентов" as sep
+state "Проверка и оценка компонент" as check
+state "Выделение описания \n итоговой программной архитектуры" as gen
+state "Разработка программного продукта" as dev
+
+[*] --> sep
+sep --> check: Доработка компонент не требуется \n Создание документов \n "Описание программного компонента"
+check --> sep: Необходимость доработки компонент
+check --> gen: Решение обосновано \n и удовлетворяет требованиям
+gen --> dev: Доработка архитектуры не требуется \n Создание документа \n "Описание программной архитектуры"
+dev --> sep: Необходимость доработки компонент \n или архитектуры в целом
+dev --> [*]
+
+@enduml
